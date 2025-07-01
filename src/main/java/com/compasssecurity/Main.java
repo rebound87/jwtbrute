@@ -14,10 +14,7 @@ public class Main {
 
         try {
             Algorithm algorithm = Algorithm.HMAC256("secret");
-            JWTVerifier verifier = JWT.require(algorithm)
-                    // reusable verifier instance
-                    .build();
-
+            JWTVerifier verifier = JWT.require(algorithm).acceptExpiresAt(3600).build();
             decodedJWT = verifier.verify(myJWT);
             System.out.println("Token verified successfully!");
         } catch (JWTVerificationException exception){
